@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/14 12:24:48 by obibik            #+#    #+#             */
-/*   Updated: 2018/09/14 12:24:51 by obibik           ###   ########.fr       */
+/*   Created: 2018/09/12 16:27:58 by obibik            #+#    #+#             */
+/*   Updated: 2018/09/12 16:28:01 by obibik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fillit.h"
-#include "fcntl.h"
 
-/*
-** Entry point for our application
-*/
-
-int	main(int argc, char **argv)
+void		ft_lstrev(t_list **alst)
 {
-	t_list	*list;
-	t_map	*map;
+	t_list	*prev;
+	t_list	*cur;
+	t_list	*next;
 
-	if (argc != 2)
+	prev = NULL;
+	cur = *alst;
+	while (cur != NULL)
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
 	}
-	if ((list = read_tetri(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (1);
-	}
-	map = solve_map(list);
-	print_map(map);
-	free_map(map);
-	free_list(list);
-	return (0);
+	*alst = prev;
 }

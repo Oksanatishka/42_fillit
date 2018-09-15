@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/14 12:24:48 by obibik            #+#    #+#             */
-/*   Updated: 2018/09/14 12:24:51 by obibik           ###   ########.fr       */
+/*   Created: 2018/08/14 17:30:26 by obibik            #+#    #+#             */
+/*   Updated: 2018/08/14 17:30:29 by obibik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "fillit.h"
-#include "fcntl.h"
-
 /*
-** Entry point for our application
+** stpcpy, stpncpy, strcpy, strncpy -- copy strings
 */
 
-int	main(int argc, char **argv)
-{
-	t_list	*list;
-	t_map	*map;
+#include "libft.h"
 
-	if (argc != 2)
+char	*ft_strcpy(char *dst, const char *src)
+{
+	int		i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
+		dst[i] = src[i];
+		i++;
 	}
-	if ((list = read_tetri(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (1);
-	}
-	map = solve_map(list);
-	print_map(map);
-	free_map(map);
-	free_list(list);
-	return (0);
+	dst[i] = src[i];
+	return (dst);
 }
+
+/*
+** int main ()
+** {
+**     char example[50];
+**
+**     ft_strcpy(example, "Life is good!");
+**     printf("%s\n", example);
+**
+**    return(0);
+** }
+*/

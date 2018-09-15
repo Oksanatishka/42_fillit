@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tetrimino.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/14 12:26:51 by obibik            #+#    #+#             */
+/*   Updated: 2018/09/14 12:26:53 by obibik           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fillit.h"
 
@@ -5,10 +17,10 @@
 ** Frees a list made with read_tetri.
 */
 
-t_list *free_list(t_list *list)
+t_list		*free_list(t_list *list)
 {
 	t_etris *tetris;
-	t_list *next;
+	t_list	*next;
 
 	while (list)
 	{
@@ -25,7 +37,7 @@ t_list *free_list(t_list *list)
 ** Frees a tetrimino structure (e.g. ####).
 */
 
-void free_tetris(t_etris *tetri)
+void		free_tetris(t_etris *tetri)
 {
 	int i;
 
@@ -36,16 +48,16 @@ void free_tetris(t_etris *tetri)
 		i++;
 	}
 	ft_memdel((void **)(&(tetri->pos)));
-	ft_memdel((void **)&tetr);
+	ft_memdel((void **)&tetri);
 }
 
 /*
 ** Creates a new tetrimino structure (e.g. #->#->#->#).
 */
 
-t_etris *tetris_new(char **pos, int width, int height, char value)
+t_etris		*tetris_new(char **pos, int width, int height, char value)
 {
-	t_etri *tetris;
+	t_etris	*tetri;
 
 	tetri = ft_memalloc(sizeof(t_etris));
 	tetri->pos = pos;
@@ -59,12 +71,12 @@ t_etris *tetris_new(char **pos, int width, int height, char value)
 ** Creates a new point structure(base square size for dots).
 */
 
-t_point *new_size(int x, int y)
+t_point		*new_size(int x, int y)
 {
-	t_point *point;
+	t_point	*size;
 
-	point = ft_memalloc(sizeof(t_point));
-	point->x = x;
-	point->y = y;
-	return (point);
+	size = ft_memalloc(sizeof(t_point));
+	size->x = x;
+	size->y = y;
+	return (size);
 }

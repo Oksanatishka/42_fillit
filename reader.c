@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reader.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/14 12:26:28 by obibik            #+#    #+#             */
+/*   Updated: 2018/09/14 12:26:30 by obibik           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fillit.h"
+#define OLD t_list *list;t_etris *tetris
+#define INT char *buf;int bl_count;int old_n;char letter
 
 /*
 ** Utility function to get min-max values for get_piece.
@@ -13,7 +27,7 @@
 ** result will be: min.x = 1, min.y = 0, max.x = 2, max.y = 2
 */
 
-void ft_min_max(char *str, t_point *min, t_point *max)
+void		ft_min_max(char *str, t_point *min, t_point *max)
 {
 	int i;
 
@@ -48,7 +62,7 @@ void ft_min_max(char *str, t_point *min, t_point *max)
 ** ##
 ** #.
 ** #.
-** It goes through each row in the terimino and copies only 
+** It goes through each row in the terimino and copies only
 ** needed characters to "pos" array.
 ** Init new tetris structure, e.g:
 ** pos =
@@ -58,13 +72,13 @@ void ft_min_max(char *str, t_point *min, t_point *max)
 ** width = 2, heighr = 3, value = 'A'
 */
 
-t_etris *get_piece(char *str, char value)
+t_etris		*get_piece(char *str, char value)
 {
-	t_point *min;
-	t_point *max;
-	char **pos;
-	int i;
-	t_etris *tetri;
+	t_point		*min;
+	t_point		*max;
+	char		**pos;
+	int			i;
+	t_etris		*tetri;
 
 	min = new_size(3, 3);
 	max = new_size(0, 0);
@@ -75,7 +89,7 @@ t_etris *get_piece(char *str, char value)
 	{
 		pos[i] = ft_strnew(max->x - min->x + 1);
 		ft_strncpy(pos[i], str + (min->x) + (i + min->y) * 5,
-				   max->x - min->x + 1);
+				max->x - min->x + 1);
 		i++;
 	}
 	tetri = tetris_new(pos, max->x - min->x + 1, max->y - min->y + 1, value);
@@ -90,9 +104,9 @@ t_etris *get_piece(char *str, char value)
 ** Otherwise, our tetrimino is not contiguous.
 */
 
-int check_connection(char *str)
+int			check_connection(char *str)
 {
-	int block;
+	int	block;
 	int i;
 
 	block = 0;
@@ -119,7 +133,7 @@ int check_connection(char *str)
 ** Checks character counts, hash amount,dot positions and new lines
 */
 
-int check_counts(char *str, int count)
+int			check_counts(char *str, int count)
 {
 	int i;
 	int blocs;
@@ -152,15 +166,10 @@ int check_counts(char *str, int count)
 ** 4 lines made of 4 chars (+ newline) = 20 chars + sep. newline = 21 chars
 */
 
-t_list *read_tetri(int fd)
+t_list		*read_tetri(int fd)
 {
-	t_list *list;
-	t_etris *tetris;
-	char *buf;
-	int bl_count;
-	int old_n;
-	char letter;
-
+	OLD;
+	INT;
 	letter = 'A';
 	buf = ft_strnew(BASE_SIZE + 1);
 	list = NULL;

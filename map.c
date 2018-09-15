@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/14 12:26:17 by obibik            #+#    #+#             */
+/*   Updated: 2018/09/14 12:26:19 by obibik           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include "libft.h"
 
@@ -5,7 +17,7 @@
 ** Frees an allocated map structure.
 */
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	int i;
 
@@ -23,7 +35,7 @@ void free_map(t_map *map)
 ** Prints an allocated map structure to standard output.
 */
 
-void print_map(t_map *map)
+void	print_map(t_map *map)
 {
 	int i;
 
@@ -39,20 +51,21 @@ void print_map(t_map *map)
 /*
 ** Allocates a new map structure with specified size.
 **
-// allocate memory for t_map structure
-// set size variable in the structure
-// set array variable in the structure with memory of size
-// basically it will contain array of arrays of characters, e.g if size = 3 array field will become
-// ...
-// ...
-// ...
+** allocate memory for t_map structure
+** set size variable in the structure
+** set array variable in the structure with memory of size
+** basically it will contain array of arrays of characters,
+** e.g if size = 3 array field will become
+** ...
+** ...
+** ...
 */
 
-t_map *map_new(int size)
+t_map	*map_new(int size)
 {
-	t_map *map;
-	int i;
-	int j;
+	t_map	*map;
+	int		i;
+	int		j;
 
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	map->size = size;
@@ -99,7 +112,7 @@ t_map *map_new(int size)
 ** add tetrimino to the result matrix starting from x,y coordinate
 */
 
-int place(t_etris *tetri, t_map *map, int w, int h)
+int		place(t_etris *tetri, t_map *map, int w, int h)
 {
 	int i;
 	int j;
@@ -136,14 +149,15 @@ int place(t_etris *tetri, t_map *map, int w, int h)
 **
 ** and point structure has x = 0 and y = 0
 ** then we can clearly see that
-** we can insert it in the left top corner using character c (can be 'A', 'B', 'C' and so on)
+** we can insert it in the left top corner using
+** character c (can be 'A', 'B', 'C' and so on)
 ** so result of map will be:
 ** BAA
 ** BAA
 ** BB.
 */
 
-void set_piece(t_etris *tetri, t_map *map, t_point *dot, char c)
+void	set_piece(t_etris *tetri, t_map *map, t_point *dot, char c)
 {
 	int i;
 	int j;

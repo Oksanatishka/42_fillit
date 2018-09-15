@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obibik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/14 12:24:48 by obibik            #+#    #+#             */
-/*   Updated: 2018/09/14 12:24:51 by obibik           ###   ########.fr       */
+/*   Created: 2018/08/22 16:57:55 by obibik            #+#    #+#             */
+/*   Updated: 2018/08/22 16:57:58 by obibik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "fillit.h"
-#include "fcntl.h"
-
 /*
-** Entry point for our application
+** Takes as a parameter the address of a string that need to be
+** freed with free(3), then sets its pointer to NULL.
+** Param. #1 The string’s address that needs to be freed and its pointer set
+** to NULL.
+** Return value None.
+** Libc functions Free(3)
 */
 
-int	main(int argc, char **argv)
-{
-	t_list	*list;
-	t_map	*map;
+#include "libft.h"
 
-	if (argc != 2)
+void	ft_strdel(char **as)
+{
+	if (as)
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
+		free(*as);
+		*as = NULL;
 	}
-	if ((list = read_tetri(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (1);
-	}
-	map = solve_map(list);
-	print_map(map);
-	free_map(map);
-	free_list(list);
-	return (0);
 }

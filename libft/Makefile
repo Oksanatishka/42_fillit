@@ -5,32 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: obibik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/14 12:27:12 by obibik            #+#    #+#              #
-#    Updated: 2018/09/14 12:27:14 by obibik           ###   ########.fr        #
+#    Created: 2018/08/22 17:36:24 by obibik            #+#    #+#              #
+#    Updated: 2018/08/22 17:36:28 by obibik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME = libft.a
+CC = gcc -c
+INCLUDE = libft.h
+FLAGS = -Wall -Wextra -Werror
+AR = ar rc
 
-SRC = main.c reader.c solver.c map.c tetrimino.c
+SRCS = *.c 
 
-OBJ = main.o reader.o solver.o map.o tetrimino.o
-
-FLAG = -Wall -Werror -Wextra
+OBJ = *.o
 
 all: $(NAME)
 
-$(NAME):
-	make -C libft
-	gcc $(FLAG) -c $(SRC) -I libft
-	gcc $(FLAG) -o $(NAME) $(OBJ) -I libft -L./libft -lft
+$(NAME): 
+	$(CC)  $(FLAGS) $(SRCS)
+	$(AR)  $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	rm -f $(OBJ)
-	make -C libft clean
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C libft fclean
+	/bin/rm -rf $(NAME)
 
-re:	fclean all
+re: fclean all
+
+.PHONY: all clean fclean re
